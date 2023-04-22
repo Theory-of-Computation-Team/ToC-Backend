@@ -5,15 +5,15 @@ import csv
 
 def getTem(province):
     url_dict = {
-        "prayao": "https://th.wikipedia.org/wiki/รายชื่อวัดในจังหวัดพะเยา",
+        "phayao": "https://th.wikipedia.org/wiki/รายชื่อวัดในจังหวัดพะเยา",
         "pattani": "https://th.wikipedia.org/wiki/รายชื่อวัดในจังหวัดปัตตานี",
-        "Ayutthaya": "https://th.wikipedia.org/wiki/รายชื่อวัดในจังหวัดพระนครศรีอยุธยา",
-        "PrachinBuri": "https://th.wikipedia.org/wiki/รายชื่อวัดในจังหวัดปราจีนบุรี"
+        "ayutthaya": "https://th.wikipedia.org/wiki/รายชื่อวัดในจังหวัดพระนครศรีอยุธยา",
+        "prachinBuri": "https://th.wikipedia.org/wiki/รายชื่อวัดในจังหวัดปราจีนบุรี"
     }
     if province not in url_dict:
         return None
     url = url_dict[province]
-    if province == "prayao":
+    if province == "phayao":
         response = requests.get(url)
         html_content = response.text
         li_match = re.findall('>(.*?)<', html_content)
@@ -37,7 +37,7 @@ def getTem(province):
             li[i] = re.sub(r'\s*\([^)]*\)\s*$', '', li[i])
         result = li[:-4]
         return result
-    elif province == "Ayutthaya":
+    elif province == "ayutthaya":
         response = requests.get(url)
         html_content = response.text
 
@@ -66,7 +66,7 @@ def getTem(province):
 
         return li_match
 
-    elif province == "PrachinBuri":
+    elif province == "prachinBuri":
         response = requests.get(url)
         html_content = response.text
         li = re.findall('>(.*?)<', html_content)
